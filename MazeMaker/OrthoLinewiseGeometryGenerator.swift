@@ -1,10 +1,10 @@
-open class OrthoLinewiseGeometryGenerator : GeometryGenerator {
+public class OrthoLinewiseGeometryGenerator : GeometryGenerator {
   let grid: Grid
   let layout: OrthogonalLayout
   let scale: CGFloat
   let margin: CGFloat
 
-  open let bounds: CGRect
+  public let bounds: CGRect
 
   public required init(grid: Grid, scale: CGFloat, margin: CGFloat) {
     self.grid = grid
@@ -16,7 +16,7 @@ open class OrthoLinewiseGeometryGenerator : GeometryGenerator {
       height: CGFloat(layout.rows - 1) * scale + margin*2)
   }
 
-  open func render(_ ctx: CGContext) {
+  public func render(_ ctx: CGContext) {
     UIColor.black.setStroke()
     UIColor.white.setFill()
 

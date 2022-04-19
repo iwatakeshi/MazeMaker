@@ -1,7 +1,7 @@
 import Foundation
 
-open class PolarLayout: Layout {
-  open let rings: Int
+public class PolarLayout: Layout {
+  public let rings: Int
   fileprivate var ringSizes: Array<Int> = []
 
   public init(rings: Int) {
@@ -12,7 +12,7 @@ open class PolarLayout: Layout {
     ringSizes.append(1)
     for ring in 1..<rings {
       let radius = Double(ring) / Double(rings)
-      let circumference = 2 * M_PI * radius
+      let circumference = 2 * Double.pi * radius
       let priorCount = ringSizes[ring-1]
       let estimatedCellWidth = circumference / Double(priorCount)
       let ratio = Int(round(estimatedCellWidth / ringHeight))
@@ -20,7 +20,7 @@ open class PolarLayout: Layout {
     }
   }
 
-  open func build(_ grid: Grid) {
+  public func build(_ grid: Grid) {
     for (ring, count) in ringSizes.enumerated() {
       for spoke in 0..<count {
         let location = PolarLocation(ring: ring, spoke: spoke)
@@ -52,11 +52,11 @@ open class PolarLayout: Layout {
     }
   }
 
-  open func ringSizeAt(_ ring: Int) -> Int {
+  public func ringSizeAt(_ ring: Int) -> Int {
     return ringSizes[ring];
   }
 
-  open func renderAsString(_ grid: Grid) -> String {
+  public func renderAsString(_ grid: Grid) -> String {
     fatalError("polar layouts cannot be rendered as a string")
   }
 }

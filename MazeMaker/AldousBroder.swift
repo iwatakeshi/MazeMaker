@@ -1,9 +1,9 @@
 import Foundation
 
-open class AldousBroder : Algorithm {
+public class AldousBroder : Algorithm {
   public init() { }
 
-  open func applyTo(_ grid: Grid) {
+  public func applyTo(_ grid: Grid) {
     var cell = grid.sample()
     var count = grid.cells.count - 1
 

@@ -1,12 +1,12 @@
-open class Cell: Hashable {
+public class Cell: Hashable {
   fileprivate(set) var links : Set<Cell> = []
-  open fileprivate(set) var location : Location
+  public fileprivate(set) var location : Location
 
-  open var hashValue: Int {
-    return location.hashValue
+  public func hash(into hasher: inout Hasher) {
+    hasher.combine(location.hashValue)
   }
 
-  open var neighbors: Set<Cell> {
+  public var neighbors: Set<Cell> {
     preconditionFailure("neighbors must be overridden in subclasses");
   }
 
@@ -22,17 +22,17 @@ open class Cell: Hashable {
     links.remove(neighbor)
   }
 
-  open func linkWith(_ neighbor: Cell) {
+  public func linkWith(_ neighbor: Cell) {
     linkOnceWith(neighbor)
     neighbor.linkOnceWith(self)
   }
 
-  open func unlinkFrom(_ neighbor: Cell) {
+  public func unlinkFrom(_ neighbor: Cell) {
     unlinkOnceFrom(neighbor)
     neighbor.unlinkOnceFrom(self)
   }
 
-  open func isLinkedWith(_ neighbor: Cell?) -> Bool {
+  public func isLinkedWith(_ neighbor: Cell?) -> Bool {
     if let neighbor = neighbor {
       return links.contains(neighbor)
     } else {
@@ -40,11 +40,11 @@ open class Cell: Hashable {
     }
   }
 
-  open func isDeadEnd() -> Bool {
+  public func isDeadEnd() -> Bool {
     return links.count == 1
   }
 
-  open func reset() {
+  public func reset() {
     links.removeAll()
   }
 }

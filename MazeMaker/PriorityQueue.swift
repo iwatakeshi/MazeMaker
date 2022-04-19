@@ -2,13 +2,13 @@ public enum PriorityWeighting {
   case lowestFirst, highestFirst
 }
 
-open class PriorityQueue<U: Hashable> {
+public class PriorityQueue<U: Hashable> {
   public typealias Pair = (item: U, priority: Int)
 
   fileprivate let heap: BinaryHeap<Pair>
   fileprivate var priorities: [U: Int] = [:]
 
-  open var isEmpty: Bool {
+  public var isEmpty: Bool {
     return heap.isEmpty
   }
 
@@ -45,7 +45,7 @@ open class PriorityQueue<U: Hashable> {
     }
   }
 
-  open subscript(element: U) -> Int? {
+  public subscript(element: U) -> Int? {
     get {
       return priorities[element]
     }
@@ -62,7 +62,7 @@ open class PriorityQueue<U: Hashable> {
     }
   }
 
-  open func fromCollection<S: Collection where S.Iterator.Element == Pair>(_ collection: S) {
+  public func fromCollection<S: Collection>(_ collection: S) where S.Iterator.Element == Pair {
     priorities.removeAll()
 
     for pair in collection {
@@ -72,7 +72,7 @@ open class PriorityQueue<U: Hashable> {
     heap.buildHeap(collection)
   }
 
-  open func next() -> Pair? {
+  public func next() -> Pair? {
     if let pair = heap.delete() {
       priorities.removeValue(forKey: pair.item)
       return pair

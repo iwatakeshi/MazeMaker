@@ -1,10 +1,10 @@
-open class PolarWallwiseGeometryGenerator : GeometryGenerator {
+public class PolarWallwiseGeometryGenerator : GeometryGenerator {
   let grid: Grid
   let layout: PolarLayout
   let scale: CGFloat
   let margin: CGFloat
 
-  open let bounds: CGRect
+  public let bounds: CGRect
 
   public required init(grid: Grid, scale: CGFloat, margin: CGFloat) {
     self.grid = grid
@@ -16,7 +16,7 @@ open class PolarWallwiseGeometryGenerator : GeometryGenerator {
       height: CGFloat(layout.rings * 2) * scale + margin*2)
   }
 
-  open func render(_ ctx: CGContext) {
+  public func render(_ ctx: CGContext) {
     UIColor.black.setStroke()
     UIColor.white.setFill()
 
@@ -30,7 +30,7 @@ open class PolarWallwiseGeometryGenerator : GeometryGenerator {
 
     for cell in grid.cells {
       if let cell = cell as? PolarCell {
-        let theta = CGFloat(2 * M_PI) / CGFloat(layout.ringSizeAt(cell.polarLocation.ring))
+        let theta = CGFloat(2 * Double.pi) / CGFloat(layout.ringSizeAt(cell.polarLocation.ring))
         let innerRadius = CGFloat(cell.polarLocation.ring) * scale
         let outerRadius = CGFloat(cell.polarLocation.ring+1) * scale
         let thetaCCW = CGFloat(cell.polarLocation.spoke) * theta

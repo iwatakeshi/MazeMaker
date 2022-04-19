@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-open class MazeCanvas: UIView {
+public class MazeCanvas: UIView {
   let generator: GeometryGenerator
 
   public init(geometry: GeometryGenerator) {
@@ -13,7 +13,7 @@ open class MazeCanvas: UIView {
     fatalError("decoder init must be defined")
   }
 
-  override open func draw(_ rect: CGRect) {
+  override public func draw(_ rect: CGRect) {
     let ctx = UIGraphicsGetCurrentContext()!
     generator.render(ctx)
   }

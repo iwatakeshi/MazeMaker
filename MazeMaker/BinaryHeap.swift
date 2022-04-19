@@ -2,11 +2,11 @@ public enum HeapComparisonResult {
   case higher, equal, lower
 }
 
-open class BinaryHeap<U> {
+public class BinaryHeap<U> {
   fileprivate var list: [U] = []
   fileprivate let compare: (U, U) -> HeapComparisonResult
 
-  open var isEmpty: Bool {
+  public var isEmpty: Bool {
     return list.isEmpty
   }
 
@@ -14,7 +14,7 @@ open class BinaryHeap<U> {
     self.compare = compare
   }
 
-  open func insert(_ value: U) {
+  public func insert(_ value: U) {
     list.append(value)
 
     var child = list.count - 1
@@ -31,16 +31,17 @@ open class BinaryHeap<U> {
     }
   }
 
-  open func buildHeap<S: Collection where S.Iterator.Element == U>(_ list: S) {
+  public func buildHeap<S: Collection>(_ list: S) where S.Iterator.Element == U {
     self.list = Array(list)
     reheapify()
   }
 
-  open func peek() -> U? {
+  public func peek() -> U? {
     return list[0]
   }
-
-  open func delete() -> U? {
+  
+  @discardableResult
+  public func delete() -> U? {
     let value = list[0]
     let least = list.popLast()
 
@@ -52,7 +53,7 @@ open class BinaryHeap<U> {
     return value
   }
 
-  open func deleteElement(_ element: U) -> U? {
+  public func deleteElement(_ element: U) -> U? {
     if let index = searchSubtree(0, forElement: element) {
       deleteAt(index)
       return element

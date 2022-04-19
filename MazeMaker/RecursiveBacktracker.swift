@@ -1,7 +1,7 @@
-open class RecursiveBacktracker : Algorithm {
+public class RecursiveBacktracker : Algorithm {
   public init() { }
 
-  open func applyTo(_ grid: Grid) {
+  public func applyTo(_ grid: Grid) {
     var stack = [ grid.sample() ]
 
     while (stack.count > 0) {
@@ -12,7 +12,7 @@ open class RecursiveBacktracker : Algorithm {
         cell.linkWith(neighbor)
         stack.append(neighbor)
       } else {
-        stack.popLast()
+        _ = stack.popLast()
       }
     }
   }

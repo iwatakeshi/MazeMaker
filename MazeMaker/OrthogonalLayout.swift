@@ -1,8 +1,8 @@
-open class OrthogonalLayout: Layout {
-  open let rows: Int
-  open let columns: Int
-  open let wrapRows: Bool
-  open let wrapColumns: Bool
+public class OrthogonalLayout: Layout {
+  public let rows: Int
+  public let columns: Int
+  public let wrapRows: Bool
+  public let wrapColumns: Bool
 
   public init(rows: Int, columns: Int, wrapRows: Bool = false, wrapColumns: Bool = false) {
     self.rows = rows
@@ -11,7 +11,7 @@ open class OrthogonalLayout: Layout {
     self.wrapColumns = wrapColumns
   }
 
-  open func build(_ grid: Grid) {
+  public func build(_ grid: Grid) {
     for row in 0..<rows {
       for column in 0..<columns {
         let location = GridLocation(row: row, column: column)
@@ -47,7 +47,7 @@ open class OrthogonalLayout: Layout {
     }
   }
 
-  open func renderAsString(_ grid: Grid) -> String {
+  public func renderAsString(_ grid: Grid) -> String {
     var string = ""
 
     for _ in 0..<columns {
